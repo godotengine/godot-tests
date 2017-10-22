@@ -1,0 +1,9 @@
+# Godot-specific ignores
+.import/
+export.cfg
+.fscache
+logs/
+
+# System/tool-specific ignores
+.directory
+*~
