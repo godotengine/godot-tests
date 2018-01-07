@@ -80,7 +80,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 10.6541, 13.7136 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_deg")
+tracks/1/path = NodePath(".:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -109,7 +109,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 9.53792, 17.2225 ), Vector3( 16.6245, 8.50416, 10.3837 ), Vector3( 18.2209, 7.4704, -4.59814 ), Vector3( 16.6245, 8.50416, 10.3837 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath(".:rotation_deg")
+tracks/1/path = NodePath(".:rotation_degrees")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false

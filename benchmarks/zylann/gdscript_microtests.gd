@@ -331,19 +331,19 @@ func test_variant_array_assign():
 
 #-------------------------------------------------------
 func test_int_array_resize():
-	start("IntArray resize")
+	start("PoolIntArray resize")
 	for i in range(0,ITERATIONS):
-		var line = IntArray()
+		var line = PoolIntArray()
 		line.resize(1000)
 	
 	stop()
 		
 #-------------------------------------------------------
 func test_int_array_assign():
-	var i_array = IntArray()
+	var i_array = PoolIntArray()
 	i_array.resize(100)
 
-	start("IntArray set element")
+	start("PoolIntArray set element")
 	for i in range(0, ITERATIONS):
 		i_array[42] = 0
 	
