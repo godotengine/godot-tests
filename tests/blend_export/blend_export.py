@@ -24,7 +24,7 @@ for filename in os.listdir(directory):
         bpy.ops.export_scene.gltf(
             filepath=export_type + "/" + strip_file_name + ".gltf",
             export_format="GLTF_SEPARATE",
-            export_copyright="The MIT License (MIT) Copyright (c) 2016 Godot Engine",
+            export_copyright="The MIT License (MIT) Copyright (c) 2020 Godot Engine",
         )
         export_type = "obj"
         bpy.ops.export_scene.obj(filepath=export_type + "/" + strip_file_name + "." + export_type)
