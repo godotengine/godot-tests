@@ -1,4 +1,4 @@
-# blender --background --python .\blend-export.py
+# blender --background --python .\blend_export.py
 import bpy
 import posixpath
 import shutil
