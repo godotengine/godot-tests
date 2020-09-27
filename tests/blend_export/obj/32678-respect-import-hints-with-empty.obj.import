@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/32678-respect-import-hints-with-empty.glb-663165a219477a1d1c083014a41cb510.scn"
+path="res://.import/32678-respect-import-hints-with-empty.obj-ab27f775eed071fc34a8b09ae025606b.scn"
 
 [deps]
 
-source_file="res://32678-respect-import-hints-with-empty/32678-respect-import-hints-with-empty.glb"
-dest_files=[ "res://.import/32678-respect-import-hints-with-empty.glb-663165a219477a1d1c083014a41cb510.scn" ]
+source_file="res://obj/32678-respect-import-hints-with-empty.obj"
+dest_files=[ "res://.import/32678-respect-import-hints-with-empty.obj-ab27f775eed071fc34a8b09ae025606b.scn" ]
 
 [params]
 
