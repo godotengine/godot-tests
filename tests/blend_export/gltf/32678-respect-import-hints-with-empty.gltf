@@ -19,7 +19,11 @@
                 7,
                 8,
                 9,
-                10
+                10,
+                11,
+                12,
+                13,
+                14
             ]
         }
     ],
@@ -115,6 +119,38 @@
                 0,
                 0,
                 -12
+            ]
+        },
+        {
+            "name" : "arrow_empty-colonly",
+            "translation" : [
+                0,
+                0,
+                -19.096826553344727
+            ]
+        },
+        {
+            "name" : "image_empty-colonly",
+            "translation" : [
+                0,
+                0,
+                -21.12411880493164
+            ]
+        },
+        {
+            "name" : "sphere_empty-colonly",
+            "translation" : [
+                0,
+                0,
+                -23.037099838256836
+            ]
+        },
+        {
+            "name" : "other_empty-colonly",
+            "translation" : [
+                0,
+                0,
+                -25.03607940673828
             ]
         }
     ],
