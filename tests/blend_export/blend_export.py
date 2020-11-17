@@ -14,6 +14,10 @@ posixpath.os.mkdir(export_type, mode=0o777)
 export_type = "fbx"
 shutil.rmtree(export_type, ignore_errors=True)
 posixpath.os.mkdir(export_type, mode=0o777)
+export_type = "dae"
+shutil.rmtree(export_type, ignore_errors=True)
+posixpath.os.mkdir(export_type, mode=0o777)
+
 
 for filename in os.listdir(directory):
     if filename.endswith(".blend"):
@@ -29,6 +33,8 @@ for filename in os.listdir(directory):
         export_type = "obj"
         bpy.ops.export_scene.obj(filepath=export_type + "/" + strip_file_name + "." + export_type)
         export_type = "fbx"
+        bpy.ops.export_scene.fbx(filepath=export_type + "/" + strip_file_name + "." + export_type)
+        export_type = "dae"
         bpy.ops.export_scene.fbx(filepath=export_type + "/" + strip_file_name + "." + export_type)
     else:
         continue
