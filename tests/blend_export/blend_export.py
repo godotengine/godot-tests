@@ -5,7 +5,7 @@ import shutil
 import os
 
 directories = ["blend", "proposal/blend"]
-export_types = ["gltf", "obj", "fbx"]
+export_types = ["gltf", "obj", "fbx", "dae"]
 for export_type in export_types:
     shutil.rmtree(export_type, ignore_errors=True)
     posixpath.os.mkdir(export_type, mode=0o777)
@@ -27,3 +27,5 @@ for directory in directories:
                 bpy.ops.export_scene.fbx(filepath=export_path)
             elif export_type == "obj":
                 bpy.ops.export_scene.obj(filepath=export_path)
+            elif export_type == "dae":
+                bpy.ops.wm.collada_export(filepath=export_path)
