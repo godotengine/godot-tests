@@ -21,7 +21,7 @@ for directory in directories:
                 bpy.ops.export_scene.gltf(
                     filepath=export_path,
                     export_format="GLTF_SEPARATE",
-                    export_copyright="The MIT License (MIT) Copyright (c) 2020 Godot Engine",
+                    export_copyright="Creative Commons Attribution 4.0 International Public License 2020 Godot Engine",
                 )
             elif export_type == "fbx":
                 bpy.ops.export_scene.fbx(filepath=export_path)
