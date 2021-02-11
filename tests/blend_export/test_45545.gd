@@ -39,10 +39,24 @@ func _ready():
 	output = $ScrollContainer/OutputWindow
 	test_scene = GOLDEN_GLTF_SCENE.instance()
 
+	var passed_tests: Array = []
+	var failed_tests: Array = []
+
 	for method_name in _find_tests():
 		_add_test_header(method_name)
-		self.call(method_name)
+		var result: bool = self.call(method_name)
 		_add_line(" ")
+		if result:
+			passed_tests.push_back(method_name)
+		else:
+			failed_tests.push_back(method_name)
+	
+	if failed_tests:
+		print("%d failed tests:" % len(failed_tests))
+		for test in failed_tests:
+			print("\t%s" % test)
+	else:
+		print("Passed all %d tests" % len(passed_tests))
 
 
 func _find_tests() -> Array:
@@ -72,65 +86,150 @@ func _add_line(text: String, color: Color = Color.white) -> void:
 	output.add_child(line)
 
 
-func _check_basic(original: String, expected: String) -> void:
+func _check_basic(original: String, expected: String) -> bool:
 	var node: Node = test_scene.get_node_or_null(expected)
-	if node == null:
+	if not node:
 		_add_result(
 			false,
 			"Missing expected Godot node '%s' for glTF node '%s'" % [expected, original])
-	else:
-		_add_result(true, "Found expected node '%s'" % expected)
+		return false
+	_add_result(true, "Found expected node '%s'" % expected)
+	return true
 
 
-func _test_basic_alphanumeric_is_unchanged() -> void:
+func _test_basic_alphanumeric_is_unchanged() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_ALPHANUMERIC
 	var expected: String = original
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_allowed_symbols_is_unchanged() -> void:
+func _test_basic_allowed_symbols_is_unchanged() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_ALLOWED_SYMBOLS
 	var expected: String = original
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_katakana_is_unchanged() -> void:
+func _test_basic_katakana_is_unchanged() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_KATAKANA
 	var expected: String = original
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_emoji_is_unchanged() -> void:
+func _test_basic_emoji_is_unchanged() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_EMOJI
 	var expected: String = original
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_disallowed_characters_are_stripped() -> void:
+func _test_basic_disallowed_characters_are_stripped() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_NONCLASHING
 	var expected: String = GLTF_PREFIX_BASIC + "Disallowed_Non-clashing_"
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_disallowed_clashing_nodes_are_uniquified() -> void:
+func _test_basic_disallowed_clashing_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_1
 	var expected: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_"
-	_check_basic(original, expected)
+	if not _check_basic(original, expected):
+		return false
 
 	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_2
 	expected = GLTF_PREFIX_BASIC + "Disallowed_Clashing_2"
-	_check_basic(original, expected)
+	return _check_basic(original, expected)
 
 
-func _test_basic_disallowed_nested_nodes_are_uniquified() -> void:
+func _test_basic_disallowed_nested_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
 	var expected_root: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_"
-	_check_basic(original, expected_root)
+	if not _check_basic(original, expected_root):
+		return false
 
 	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_2
 	var expected_mid = expected_root + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_2"
-	_check_basic(original, expected_mid)
+	if not _check_basic(original, expected_mid):
+		return false
 
 	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
 	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_3"
-	_check_basic(original, expected_leaf)
+	return _check_basic(original, expected_leaf)
+
+
+# Verifies that a node exists with the expected name and that it has a StaticBody3D child.
+func _check_hinted_col(original: String, expected: String) -> bool:
+	var node: Node = test_scene.get_node_or_null(expected)
+	if not node:
+		_add_result(
+			false,
+			"Missing expected Godot node '%s' for glTF node '%s'" % [expected, original])
+		return false
+		
+	var collision_body: StaticBody3D = node.get_node_or_null("static_collision")
+	if not collision_body:
+		_add_result(
+			false,
+			"Missing 'static_collision' child for Godot node '%s' (glTF '%s')" % [
+				expected, original])
+		return false
+		
+	# This test assumes that if the static_collision node was created the -col hint was properly
+	# handled (as that behavior should be tested elsewhere).
+	_add_result(true, "Expected node '%s' contains a static_collision StaticBody3D" % expected)
+	return true
+
+
+func _test_hinted_alphanumeric_is_unchanged() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_ALPHANUMERIC
+	var expected: String = original
+	return _check_basic(original, expected)
+
+
+func _test_hinted_allowed_symbols_is_unchanged() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_ALLOWED_SYMBOLS
+	var expected: String = original
+	return _check_hinted_col(original, expected)
+
+
+func _test_hinted_katakana_is_unchanged() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_KATAKANA
+	var expected: String = original
+	return _check_hinted_col(original, expected)
+
+
+func _test_hinted_emoji_is_unchanged() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_EMOJI
+	var expected: String = original
+	return _check_hinted_col(original, expected)
+
+
+func _test_hinted_disallowed_characters_are_stripped() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_NONCLASHING
+	var expected: String = GLTF_PREFIX_BASIC + "Disallowed_Non-clashing_"
+	return _check_hinted_col(original, expected)
+
+
+func _test_hinted_disallowed_clashing_nodes_are_uniquified() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_1
+	var expected: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_"
+	if not _check_hinted_col(original, expected):
+		return false
+
+	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_2
+	expected = GLTF_PREFIX_BASIC + "Disallowed_Clashing_2"
+	return _check_hinted_col(original, expected)
+
+
+func _test_hinted_disallowed_nested_nodes_are_uniquified() -> bool:
+	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
+	var expected_root: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_"
+	if not _check_hinted_col(original, expected_root):
+		return false
+
+	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_2
+	var expected_mid = expected_root + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_2"
+	if not _check_hinted_col(original, expected_mid):
+		return false
+
+	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
+	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_3"
+	return _check_hinted_col(original, expected_leaf)
+
