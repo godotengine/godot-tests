@@ -5,7 +5,7 @@ Automates the regeneration of various export formats from golden blend files.
 
 Note: In environments that do not support shebang execution, Blender may be
 invoked from the command line with the arguments from the first line of this
-script.
+script (see run_tests.bat).
 """
 
 import bpy
