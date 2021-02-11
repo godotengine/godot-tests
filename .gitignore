@@ -4,3 +4,5 @@ tests/gltf_export/.import/
 tests/blend_export/.import/
 
 tests/blend_export/.godot/imported/
+
+tests/blend_export/**/*.import
