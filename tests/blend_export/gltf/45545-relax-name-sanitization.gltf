@@ -47,7 +47,7 @@
         },
         {
             "mesh" : 1,
-            "name" : "Basic_Hiragana_\u3054\u3069\u3065",
+            "name" : "Basic_Katakana_\u30b4\u30c9\u30c4",
             "translation" : [
                 0,
                 0,
@@ -92,6 +92,18 @@
         },
         {
             "mesh" : 6,
+            "name" : "Basic_Disallowed_Clashing_Deep_Tree_@@@",
+            "translation" : [
+                -4,
+                0,
+                0
+            ]
+        },
+        {
+            "children" : [
+                6
+            ],
+            "mesh" : 7,
             "name" : "Basic_Disallowed_Clashing_Deep_Tree_@@",
             "translation" : [
                 -4,
@@ -100,17 +112,7 @@
             ]
         },
         {
-            "mesh" : 7,
-            "name" : "Basic_Disallowed_Clashing_Deep_Tree_@@@",
-            "translation" : [
-                -8,
-                0,
-                0
-            ]
-        },
-        {
             "children" : [
-                6,
                 7
             ],
             "mesh" : 8,
@@ -219,7 +221,7 @@
         },
         {
             "mesh" : 19,
-            "name" : "Animated_Hiragana_\u3054\u3069\u3065",
+            "name" : "Animated_Katakana_\u30b4\u30c9\u30c4",
             "translation" : [
                 -24,
                 0,
@@ -228,7 +230,7 @@
         },
         {
             "mesh" : 20,
-            "name" : "Hinted_AllowedSymbols_!#$%^&*()-=[]{}';<>,~\u00a3\u00a5-col",
+            "name" : "Hinted_AllowedSymbols_!#$%^&*()-=[]{}';<>,~-col",
             "translation" : [
                 0,
                 0,
@@ -237,7 +239,7 @@
         },
         {
             "mesh" : 21,
-            "name" : "Hinted_Basic_Hiragana_\u3054\u3069\u3065-col",
+            "name" : "Hinted_Katakana_\u30b4\u30c9\u30c4-col",
             "translation" : [
                 0,
                 0,
@@ -264,6 +266,18 @@
         },
         {
             "mesh" : 24,
+            "name" : "Hinted_Disallowed_Clashing_Deep_Tree_@@@-col",
+            "translation" : [
+                -4,
+                0,
+                0
+            ]
+        },
+        {
+            "children" : [
+                24
+            ],
+            "mesh" : 25,
             "name" : "Hinted_Disallowed_Clashing_Deep_Tree_@@-col",
             "translation" : [
                 -4,
@@ -272,17 +286,7 @@
             ]
         },
         {
-            "mesh" : 25,
-            "name" : "Hinted_Disallowed_Clashing_Deep_Tree_@@@-col",
-            "translation" : [
-                -8,
-                0,
-                0
-            ]
-        },
-        {
             "children" : [
-                24,
                 25
             ],
             "mesh" : 26,
@@ -638,7 +642,7 @@
                     }
                 }
             ],
-            "name" : "Animated_Hiragana_\u3054\u3069\u3065-loop",
+            "name" : "Animated_Katakana_\u30b4\u30c9\u30c4-loop",
             "samplers" : [
                 {
                     "input" : 112,
@@ -888,7 +892,7 @@
             ]
         },
         {
-            "name" : "Cube.017",
+            "name" : "Cube.018",
             "primitives" : [
                 {
                     "attributes" : {
@@ -902,7 +906,7 @@
             ]
         },
         {
-            "name" : "Cube.018",
+            "name" : "Cube.017",
             "primitives" : [
                 {
                     "attributes" : {
@@ -1140,7 +1144,7 @@
             ]
         },
         {
-            "name" : "Cube.023",
+            "name" : "Cube.024",
             "primitives" : [
                 {
                     "attributes" : {
@@ -1154,7 +1158,7 @@
             ]
         },
         {
-            "name" : "Cube.024",
+            "name" : "Cube.023",
             "primitives" : [
                 {
                     "attributes" : {
