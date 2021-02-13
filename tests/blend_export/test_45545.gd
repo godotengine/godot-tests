@@ -154,8 +154,9 @@ func _test_basic_disallowed_clashing_nodes_are_uniquified() -> bool:
 
 
 func _test_basic_disallowed_nested_nodes_are_uniquified() -> bool:
+	# Note: Blender 9.2 serializes in prefix order, so the leaf child will be named first.
 	var original: String = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
-	var expected_root: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_"
+	var expected_root: String = GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_3"
 	if not _check_basic(original, expected_root):
 		return false
 
@@ -165,7 +166,7 @@ func _test_basic_disallowed_nested_nodes_are_uniquified() -> bool:
 		return false
 
 	original = GLTF_PREFIX_BASIC + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
-	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_3"
+	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_BASIC + "Disallowed_Clashing_Deep_Tree_"
 	return _check_basic(original, expected_leaf)
 
 
@@ -235,7 +236,7 @@ func _test_hinted_disallowed_clashing_nodes_are_uniquified() -> bool:
 
 func _test_hinted_disallowed_nested_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_HINTED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
-	var expected_root: String = GLTF_PREFIX_HINTED + "Disallowed_Clashing_Deep_Tree_"
+	var expected_root: String = GLTF_PREFIX_HINTED + "Disallowed_Clashing_Deep_Tree_3"
 	if not _check_hinted_col(original, expected_root):
 		return false
 
@@ -245,7 +246,7 @@ func _test_hinted_disallowed_nested_nodes_are_uniquified() -> bool:
 		return false
 
 	original = GLTF_PREFIX_HINTED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
-	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_HINTED + "Disallowed_Clashing_Deep_Tree_3"
+	var expected_leaf = expected_mid + "/" + GLTF_PREFIX_HINTED + "Disallowed_Clashing_Deep_Tree_"
 	return _check_hinted_col(original, expected_leaf)
 
 
@@ -346,7 +347,7 @@ func _test_animated_disallowed_clashing_nodes_are_uniquified() -> bool:
 
 func _test_animated_disallowed_nested_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
-	var expected_root: String = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_"
+	var expected_root: String = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_3"
 	if not _check_animated(original, expected_root):
 		return false
 
@@ -358,5 +359,5 @@ func _test_animated_disallowed_nested_nodes_are_uniquified() -> bool:
 
 	original = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
 	var expected_leaf = (expected_mid + "/" +
-		GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_3")
+		GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_")
 	return _check_animated(original, expected_leaf)
