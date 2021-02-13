@@ -98,6 +98,7 @@ func _add_line(text: String, font_color: Color = Color.black) -> void:
 	line.add_theme_font_size_override("font_size", 22)
 	line.add_theme_color_override("font_color", font_color)
 	output.add_child(line)
+	print(text)
 
 
 func _check_basic(original: String, expected: String) -> bool:
@@ -249,7 +250,7 @@ func _test_hinted_disallowed_nested_nodes_are_uniquified() -> bool:
 
 
 # Verifies that a node exists with the expected name and that an associated animation exists.
-func _check_animated(original: String, expected: String) -> bool:
+func _check_animated(original: String, expected: String, expected_animation: String = "") -> bool:
 	var node: Node = test_scene.get_node_or_null(expected)
 	if not node:
 		_add_result(
@@ -257,7 +258,8 @@ func _check_animated(original: String, expected: String) -> bool:
 			"Missing expected Godot node '%s' for glTF node '%s'" % [expected, original])
 		return false
 
-	var expected_animation: String = expected + GLTF_SUFFIX_ANIMATION
+	if expected_animation.is_empty():
+		expected_animation = expected + GLTF_SUFFIX_ANIMATION
 	var animation: Animation = test_animation_player.get_animation(expected_animation)
 	if not animation:
 		_add_result(
@@ -307,8 +309,10 @@ func _test_animated_alphanumeric_is_unchanged() -> bool:
 
 func _test_animated_allowed_symbols_is_unchanged() -> bool:
 	var original: String = GLTF_PREFIX_ANIMATED + GLTF_ALLOWED_SYMBOLS
-	var expected: String = original
-	return _check_animated(original, expected)
+	var expected_node: String = original
+	var expected_animation: String = original.replace(",", "").replace("[", "")
+	expected_animation += GLTF_SUFFIX_ANIMATION
+	return _check_animated(original, expected_node, expected_animation)
 
 
 func _test_animated_katakana_is_unchanged() -> bool:
