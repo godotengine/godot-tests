@@ -277,12 +277,22 @@ func _check_animated(original: String, expected: String, expected_animation: Str
 				track_count, expected_animation, expected, original])
 		return false
 
+	# All of the golden test animations are transforms.
 	var track_type: int = animation.track_get_type(0)
 	if track_type != Animation.TYPE_TRANSFORM:
 		_add_result(
 			false,
 			"Unexpected track type %d on animation '%s' for Godot node '%s' (glTF '%s')" % [
 				track_type, expected_animation, expected, original])
+		return false
+
+	var track_key_count: int = animation.track_get_key_count(0)
+	if track_key_count <= 0:
+		_add_result(
+			false,
+			("Animation track has unexpected %d (<= 0) key frames on animation '%s' for Godot node \
+				'%s' (glTF '%s')" % [
+					track_key_count, expected_animation, expected, original]))
 		return false
 
 	var track_path: NodePath = animation.track_get_path(0)
@@ -294,7 +304,6 @@ func _check_animated(original: String, expected: String, expected_animation: Str
 				 (glTF '%s')" % [
 					track_path, expected_track_path, expected_animation, expected, original]))
 		return false
-
 
 	# This test assumes that if the static_collision node was created the -col hint was properly
 	# handled (as that behavior should be tested elsewhere).
@@ -337,27 +346,38 @@ func _test_animated_disallowed_characters_are_stripped() -> bool:
 func _test_animated_disallowed_clashing_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_1
 	var expected: String = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_"
-	if not _check_animated(original, expected):
+	# WARNING: Animation name disambiguation is dependent on the order in the gltf file. The 
+	# ordering appears to be deterministic within a given Blender version, but if this fails
+	# it would be good to first check that the ordering has not changed.
+	var expected_animation = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Action-loop"
+	if not _check_animated(original, expected, expected_animation):
 		return false
 
 	original = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_2
 	expected = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_2"
-	return _check_animated(original, expected)
+	expected_animation = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Action-loop2"
+	return _check_animated(original, expected, expected_animation)
 
 
 func _test_animated_disallowed_nested_nodes_are_uniquified() -> bool:
 	var original: String = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_1
 	var expected_root: String = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_3"
-	if not _check_animated(original, expected_root):
+	# WARNING: Animation name disambiguation is dependent on the order in the gltf file. The 
+	# ordering appears to be deterministic within a given Blender version, but if this fails
+	# it would be good to first check that the ordering has not changed.
+	var expected_animation = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_Action-loop"
+	if not _check_animated(original, expected_root, expected_animation):
 		return false
 
 	original = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_2
 	var expected_mid = (expected_root + "/" +
 		GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_2")
-	if not _check_animated(original, expected_mid):
+	expected_animation = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_Action-loop2"
+	if not _check_animated(original, expected_mid, expected_animation):
 		return false
 
 	original = GLTF_PREFIX_ANIMATED + GLTF_DISALLOWED_CLASHING_DEEP_TREE_3
 	var expected_leaf = (expected_mid + "/" +
 		GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_")
-	return _check_animated(original, expected_leaf)
+	expected_animation = GLTF_PREFIX_ANIMATED + "Disallowed_Clashing_Deep_Tree_Action-loop3"
+	return _check_animated(original, expected_leaf, expected_animation)
