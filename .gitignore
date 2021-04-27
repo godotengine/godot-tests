@@ -1,3 +1,5 @@
+# Blender backup files
+*.blend[1-9]*
 
 tests/gltf_export/.import/
 
