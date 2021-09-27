@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://gltf_tests/modified_bone_animation_test.glb" type="PackedScene" id=1]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2Animated.glb" type="PackedScene" id=2]
+[ext_resource path="res://gltf_tests/duplicate_skinned_mesh_combined.glb" type="PackedScene" id=3]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2.glb" type="PackedScene" id=4]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV1x.glb" type="PackedScene" id=5]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthers.glb" type="PackedScene" id=6]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItself.glb" type="PackedScene" id=7]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2WithTail.glb" type="PackedScene" id=8]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproV3.glb" type="PackedScene" id=9]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2WithBody.glb" type="PackedScene" id=10]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCase_renamemesh.glb" type="PackedScene" id=11]
+[ext_resource path="res://gltf_tests/DirectParentedSkeletons.glb" type="PackedScene" id=12]
+
+[sub_resource type="AnimationNodeAnimation" id="modified_bone_animation_test"]
+animation = &"ArmatureAnimation"
+
+[node name="Node3D" type="Node3D"]
+script = null
+
+[node name="MeshSkinnedToItselfAndOthersV2WithTail" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="modified_bone_animation_test" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="modified_bone_animation_test"]
+tree_root = SubResource( "modified_bone_animation_test" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="NestedSkeletonReproCaseV2Animated" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
+
+[node name="MeshSkinnedToItselfAndOthersV2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="MeshSkinnedToItselfAndOthers" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+
+[node name="MeshSkinnedToItselfAndOthersV1x" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="duplicate_skinned_mesh_combined" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0, 0.1, 0, -0.1, 0, 0, 0, 0, 0.1, -2, 2, 0 )
+
+[node name="NestedSkeletonReproV3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
+
+[node name="MeshSkinnedToItself" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="NestedSkeletonReproCaseV2WithBody" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0 )
+
+[node name="NestedSkeletonReproCase_renamemesh" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
+
+[node name="DirectParentedSkeletons" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[editable path="MeshSkinnedToItselfAndOthersV2WithTail"]
+[editable path="modified_bone_animation_test"]
+[editable path="NestedSkeletonReproCaseV2Animated"]
+[editable path="MeshSkinnedToItselfAndOthersV2"]
+[editable path="MeshSkinnedToItselfAndOthersV1x"]
+[editable path="duplicate_skinned_mesh_combined"]
+[editable path="MeshSkinnedToItselfAndOthers"]
+[editable path="MeshSkinnedToItself"]
+[editable path="NestedSkeletonReproCaseV2WithBody"]
+[editable path="NestedSkeletonReproCase_renamemesh"]
+[editable path="NestedSkeletonReproV3"]
+[editable path="DirectParentedSkeletons"]
