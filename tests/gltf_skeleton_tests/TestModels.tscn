@@ -1,0 +1,304 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://gltf_tests/modified_bone_animation_test.glb" type="PackedScene" id=1]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2Animated.glb" type="PackedScene" id=2]
+[ext_resource path="res://gltf_tests/duplicate_skinned_mesh_combined.glb" type="PackedScene" id=3]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2.glb" type="PackedScene" id=4]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV1x.glb" type="PackedScene" id=5]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthers.glb" type="PackedScene" id=6]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItself.glb" type="PackedScene" id=7]
+[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2WithTail.glb" type="PackedScene" id=8]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproV3.glb" type="PackedScene" id=9]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2WithBody.glb" type="PackedScene" id=10]
+[ext_resource path="res://gltf_tests/NestedSkeletonReproCase_renamemesh.glb" type="PackedScene" id=11]
+[ext_resource path="res://gltf_tests/DirectParentedSkeletons.glb" type="PackedScene" id=12]
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayA_01"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayA_02"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayA_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayA_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayA"]
+states/state_1/node = SubResource( "AutoplayA_01" )
+states/state_2/node = SubResource( "AutoplayA_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayA_03" ), &"state_2", &"state_1", SubResource( "AutoplayA_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayB_01"]
+filters = []
+animation = &"ArmatureAnimation"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayB_02"]
+filters = []
+animation = &"ArmatureAnimation"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayB_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayB_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayB"]
+states/state_1/node = SubResource( "AutoplayB_01" )
+states/state_2/node = SubResource( "AutoplayB_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayB_03" ), &"state_2", &"state_1", SubResource( "AutoplayB_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayC_01"]
+filters = []
+animation = &"CrazyAnimation"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayC_02"]
+filters = []
+animation = &"CrazyAnimation"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayC_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayC_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayC"]
+states/state_1/node = SubResource( "AutoplayC_01" )
+states/state_2/node = SubResource( "AutoplayC_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayC_03" ), &"state_2", &"state_1", SubResource( "AutoplayC_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayD_01"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayD_02"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayD_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayD_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayD"]
+states/state_1/node = SubResource( "AutoplayD_01" )
+states/state_2/node = SubResource( "AutoplayD_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayD_03" ), &"state_2", &"state_1", SubResource( "AutoplayD_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayE_01"]
+filters = []
+animation = &"SpinningCubes"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayE_02"]
+filters = []
+animation = &"SpinningCubes"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayE_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayE_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayE"]
+states/state_1/node = SubResource( "AutoplayE_01" )
+states/state_2/node = SubResource( "AutoplayE_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayE_03" ), &"state_2", &"state_1", SubResource( "AutoplayE_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayF_01"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayF_02"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayF_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayF_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayF"]
+states/state_1/node = SubResource( "AutoplayF_01" )
+states/state_2/node = SubResource( "AutoplayF_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayF_03" ), &"state_2", &"state_1", SubResource( "AutoplayF_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayG_01"]
+filters = []
+animation = &"BendCylinders"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayG_02"]
+filters = []
+animation = &"BendCylinders"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayG_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayG_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayG"]
+states/state_1/node = SubResource( "AutoplayG_01" )
+states/state_2/node = SubResource( "AutoplayG_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayG_03" ), &"state_2", &"state_1", SubResource( "AutoplayG_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayH_01"]
+filters = []
+animation = &"CrazyAnimation"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayH_02"]
+filters = []
+animation = &"CrazyAnimation"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayH_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayH_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayH"]
+states/state_1/node = SubResource( "AutoplayH_01" )
+states/state_2/node = SubResource( "AutoplayH_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayH_03" ), &"state_2", &"state_1", SubResource( "AutoplayH_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayI_01"]
+filters = []
+animation = &"ArmatureAnimation"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayI_02"]
+filters = []
+animation = &"ArmatureAnimation"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayI_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayI_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayI"]
+states/state_1/node = SubResource( "AutoplayI_01" )
+states/state_2/node = SubResource( "AutoplayI_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayI_03" ), &"state_2", &"state_1", SubResource( "AutoplayI_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayJ_01"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayJ_02"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayJ_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayJ_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayJ"]
+states/state_1/node = SubResource( "AutoplayJ_01" )
+states/state_2/node = SubResource( "AutoplayJ_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayJ_03" ), &"state_2", &"state_1", SubResource( "AutoplayJ_04" )]
+start_node = "state_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AutoplayK_01"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeAnimation" id="AutoplayK_02"]
+filters = []
+animation = &"SpinningCubesV2"
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayK_03"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachineTransition" id="AutoplayK_04"]
+switch_mode = 2
+auto_advance = true
+[sub_resource type="AnimationNodeStateMachine" id="AutoplayK"]
+states/state_1/node = SubResource( "AutoplayK_01" )
+states/state_2/node = SubResource( "AutoplayK_02" )
+transitions = [&"state_1", &"state_2", SubResource( "AutoplayK_03" ), &"state_2", &"state_1", SubResource( "AutoplayK_04" )]
+start_node = "state_1"
+
+[node name="Node3D" type="Node3D"]
+script = null
+
+[node name="MeshSkinnedToItselfAndOthersV2WithTail" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshSkinnedToItselfAndOthersV2WithTail"]
+tree_root = SubResource( "AutoplayA" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="modified_bone_animation_test" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="modified_bone_animation_test"]
+tree_root = SubResource( "AutoplayB" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="NestedSkeletonReproCaseV2Animated" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="NestedSkeletonReproCaseV2Animated"]
+tree_root = SubResource( "AutoplayC" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="MeshSkinnedToItselfAndOthersV2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshSkinnedToItselfAndOthersV2"]
+tree_root = SubResource( "AutoplayD" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="MeshSkinnedToItselfAndOthers" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshSkinnedToItselfAndOthers"]
+tree_root = SubResource( "AutoplayE" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="MeshSkinnedToItselfAndOthersV1x" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="MeshSkinnedToItselfAndOthersV1x"]
+tree_root = SubResource( "AutoplayF" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="duplicate_skinned_mesh_combined" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0, 0.1, 0, -0.1, 0, 0, 0, 0, 0.1, -2, 2, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="duplicate_skinned_mesh_combined"]
+tree_root = SubResource( "AutoplayG" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="NestedSkeletonReproV3" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="NestedSkeletonReproV3"]
+tree_root = SubResource( "AutoplayH" )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+
+[node name="MeshSkinnedToItself" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="NestedSkeletonReproCaseV2WithBody" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0 )
+
+[node name="NestedSkeletonReproCase_renamemesh" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
+
+[node name="DirectParentedSkeletons" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+
+[editable path="MeshSkinnedToItselfAndOthersV2WithTail"]
+[editable path="modified_bone_animation_test"]
+[editable path="NestedSkeletonReproCaseV2Animated"]
+[editable path="MeshSkinnedToItselfAndOthersV2"]
+[editable path="MeshSkinnedToItselfAndOthersV1x"]
+[editable path="duplicate_skinned_mesh_combined"]
+[editable path="MeshSkinnedToItselfAndOthers"]
+[editable path="MeshSkinnedToItself"]
+[editable path="NestedSkeletonReproCaseV2WithBody"]
+[editable path="NestedSkeletonReproCase_renamemesh"]
+[editable path="NestedSkeletonReproV3"]
+[editable path="DirectParentedSkeletons"]
