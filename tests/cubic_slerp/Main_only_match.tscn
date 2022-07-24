@@ -1,0 +1,195 @@
+[gd_scene load_steps=21 format=3 uid="uid://boxar1mx1sjn6"]
+
+[ext_resource type="Script" path="res://Main_only_match.gd" id="1_0w34i"]
+[ext_resource type="PackedScene" uid="uid://bsiv04ubiyxjr" path="res://debug_indicator.tscn" id="1_fe687"]
+[ext_resource type="PackedScene" uid="uid://b3ywvgurbetiy" path="res://FirstPersonFlyer.tscn" id="2_c50us"]
+[ext_resource type="Script" path="res://DebugTraces.gd" id="3_q672x"]
+[ext_resource type="Texture2D" uid="uid://ckmlr2jsohlh1" path="res://GreenCheckerboard.png" id="4_cq5uj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eko38"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(0.780392, 0.780392, 0.782353, 1)
+ground_bottom_color = Color(0.121569, 0.121569, 0.129412, 1)
+ground_horizon_color = Color(0.780392, 0.780392, 0.782353, 1)
+
+[sub_resource type="Sky" id="Sky_00uh5"]
+sky_material = SubResource("ProceduralSkyMaterial_eko38")
+
+[sub_resource type="Environment" id="Environment_5bc8l"]
+background_mode = 2
+background_energy = 0.5
+sky = SubResource("Sky_00uh5")
+tonemap_mode = 2
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 1
+sdfgi_min_cell_size = 31.25
+sdfgi_cascade0_distance = 2000.0
+sdfgi_max_distance = 4000.0
+sdfgi_y_scale = 2
+glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_x6cxi"]
+resource_name = "Test"
+length = 54.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("slerp:quaternion")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22.1, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0.458449, 0.538813, 0.458986, 0.537436), Quaternion(-0.000707107, 0.707107, 0, 0.707107), Quaternion(0.707107, 0, 0, 0.707107), Quaternion(0.5, 0.5, 0.5, 0.5), Quaternion(0.790594, -0.205453, -0.449878, 0.361053), Quaternion(-0.0370055, -0.196145, 0.881975, 0.426939), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.707, 0, 0.707, 0), Quaternion(1, 0, 0, 0), Quaternion(-1, 0, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707, 0, 0.707, 0), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(1, 0, 0, 0), Quaternion(0, -0.707, 0.707, 0), Quaternion(0.707, 0, 0, 0.707), Quaternion(0, 1, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cubic_slerp:quaternion")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22.1, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0.458449, 0.538813, 0.458986, 0.537436), Quaternion(-0.000707107, 0.707107, 0, 0.707107), Quaternion(0.707107, 0, 0, 0.707107), Quaternion(0.5, 0.5, 0.5, 0.5), Quaternion(0.790594, -0.205453, -0.449878, 0.361053), Quaternion(-0.0370055, -0.196145, 0.881975, 0.426939), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.707, 0, 0.707, 0), Quaternion(1, 0, 0, 0), Quaternion(-1, 0, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707, 0, 0.707, 0), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(1, 0, 0, 0), Quaternion(0, -0.707, 0.707, 0), Quaternion(0.707, 0, 0, 0.707), Quaternion(0, 1, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("lastKey:quaternion")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20.1, 22, 24, 26, 28.0035, 29.9957, 32, 34, 36, 38, 40, 42, 44, 45.9624, 48, 50, 52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0.458449, 0.538813, 0.458986, 0.537436), Quaternion(-0.000707107, 0.707107, 0, 0.707107), Quaternion(0.707107, 0, 0, 0.707107), Quaternion(0.5, 0.5, 0.5, 0.5), Quaternion(0.790594, -0.205453, -0.449878, 0.361053), Quaternion(-0.0370055, -0.196145, 0.881975, 0.426939), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.707, 0, 0.707, 0), Quaternion(1, 0, 0, 0), Quaternion(-1, 0, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(1, 0, 0, 0), Quaternion(0, -0.707, 0.707, 0), Quaternion(0.707, 0, 0, 0.707), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igpm5"]
+_data = {
+"Test": SubResource("Animation_x6cxi")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_erogr"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_point_size = true
+point_size = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86kc0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jr4ad"]
+material = SubResource("StandardMaterial3D_86kc0")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0uvn"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+use_point_size = true
+point_size = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhh1v"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4dbh4"]
+material = SubResource("StandardMaterial3D_fhh1v")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5htn"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2fwk"]
+material = SubResource("StandardMaterial3D_u5htn")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdqjc"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.0313726)
+albedo_texture = ExtResource("4_cq5uj")
+uv1_scale = Vector3(32, 32, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kiq8u"]
+material = SubResource("StandardMaterial3D_bdqjc")
+size = Vector3(100, 1, 100)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_0w34i")
+replaySpeed = 1.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5bc8l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Test"
+libraries = {
+"": SubResource("AnimationLibrary_igpm5")
+}
+
+[node name="DebugTraces_slerp" type="MeshInstance3D" parent="."]
+visible = false
+skeleton = NodePath("../slerp")
+script = ExtResource("3_q672x")
+pointMaterial = SubResource("StandardMaterial3D_erogr")
+tipHistoryLength = 120
+debugIndicatorPath = "../slerp/DebugIndicator"
+
+[node name="slerp" type="Node3D" parent="."]
+transform = Transform3D(0.50142, 0, 0.865203, 0, -0.999999, 0, 0.865204, 0, -0.501419, 0, 0, 0)
+rotation_edit_mode = 1
+visible = false
+
+[node name="DebugIndicator" parent="slerp" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="slerp"]
+mesh = SubResource("BoxMesh_jr4ad")
+
+[node name="DebugTraces_cubic_slerp" type="MeshInstance3D" parent="."]
+skeleton = NodePath("../slerp")
+script = ExtResource("3_q672x")
+pointMaterial = SubResource("StandardMaterial3D_r0uvn")
+tipHistoryLength = 120
+debugIndicatorPath = "../cubic_slerp/DebugIndicator"
+
+[node name="cubic_slerp" type="Node3D" parent="."]
+transform = Transform3D(0.410949, 0.0794689, 0.908187, -0.0794688, -0.989279, 0.122524, 0.908187, -0.122524, -0.400228, 0, 0, 0)
+rotation_edit_mode = 1
+
+[node name="DebugIndicator" parent="cubic_slerp" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="cubic_slerp"]
+mesh = SubResource("BoxMesh_4dbh4")
+
+[node name="lastKey" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2.1, 0)
+rotation_edit_mode = 1
+
+[node name="DebugIndicator" parent="lastKey" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="lastKey"]
+mesh = SubResource("BoxMesh_j2fwk")
+
+[node name="FirstPersonFlyer" parent="." instance=ExtResource("2_c50us")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 6)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69822, 0)
+mesh = SubResource("BoxMesh_kiq8u")
+
+[node name="Label_PlaybackPos" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 137.0
+grow_vertical = 0

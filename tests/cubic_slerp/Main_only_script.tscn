@@ -1,0 +1,209 @@
+[gd_scene load_steps=21 format=3 uid="uid://h0niudrbg7j3"]
+
+[ext_resource type="PackedScene" uid="uid://bsiv04ubiyxjr" path="res://debug_indicator.tscn" id="1_fe687"]
+[ext_resource type="Script" path="res://Main_only_script.gd" id="1_rnfxm"]
+[ext_resource type="PackedScene" uid="uid://b3ywvgurbetiy" path="res://FirstPersonFlyer.tscn" id="2_c50us"]
+[ext_resource type="Script" path="res://DebugTraces.gd" id="3_q672x"]
+[ext_resource type="Texture2D" uid="uid://ckmlr2jsohlh1" path="res://GreenCheckerboard.png" id="4_cq5uj"]
+[ext_resource type="Script" path="res://LOScriptReplayer_Node3D.gd" id="5_bviin"]
+[ext_resource type="Script" path="res://DebugLines.gd" id="6_nec70"]
+[ext_resource type="PackedScene" uid="uid://dgfq0cgjlpn7x" path="res://debug_indicator_TipsOnly.tscn" id="6_tilwc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eko38"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(0.780392, 0.780392, 0.782353, 1)
+ground_bottom_color = Color(0.121569, 0.121569, 0.129412, 1)
+ground_horizon_color = Color(0.780392, 0.780392, 0.782353, 1)
+
+[sub_resource type="Sky" id="Sky_00uh5"]
+sky_material = SubResource("ProceduralSkyMaterial_eko38")
+
+[sub_resource type="Environment" id="Environment_5bc8l"]
+background_mode = 2
+background_energy = 0.5
+sky = SubResource("Sky_00uh5")
+tonemap_mode = 2
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 1
+sdfgi_min_cell_size = 31.25
+sdfgi_cascade0_distance = 2000.0
+sdfgi_max_distance = 4000.0
+sdfgi_y_scale = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdqjc"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.0313726)
+albedo_texture = ExtResource("4_cq5uj")
+uv1_scale = Vector3(32, 32, 32)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kiq8u"]
+material = SubResource("StandardMaterial3D_bdqjc")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcyws"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_point_size = true
+point_size = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uw0r"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86kc0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jr4ad"]
+material = SubResource("StandardMaterial3D_86kc0")
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cui2m"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+use_point_size = true
+point_size = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhh1v"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4dbh4"]
+material = SubResource("StandardMaterial3D_fhh1v")
+size = Vector3(0.4, 0.4, 0.4)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_rnfxm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5bc8l")
+
+[node name="FirstPersonFlyer" parent="." instance=ExtResource("2_c50us")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0229836, 3.18882)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69822, 0)
+mesh = SubResource("BoxMesh_kiq8u")
+
+[node name="DebugTraces_LOScript_slerp" type="MeshInstance3D" parent="."]
+visible = false
+skeleton = NodePath("")
+script = ExtResource("3_q672x")
+pointMaterial = SubResource("StandardMaterial3D_dcyws")
+tipHistoryLength = 120
+debugIndicatorPath = "../LOScriptReplayerGroup_slerp/LOSolver_Interpolated/DebugIndicator"
+
+[node name="DebugLines_LOScript_slerp" type="MeshInstance3D" parent="."]
+visible = false
+skeleton = NodePath("")
+script = ExtResource("6_nec70")
+lineMaterial = SubResource("StandardMaterial3D_1uw0r")
+debugIndicatorPath = "../LOScriptReplayerGroup_slerp"
+
+[node name="LOScriptReplayerGroup_slerp" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0)
+
+[node name="LOSolver_Interpolated" type="Node3D" parent="LOScriptReplayerGroup_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_slerp/LOSolver_Interpolated" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="LOScriptReplayerGroup_slerp/LOSolver_Interpolated"]
+mesh = SubResource("BoxMesh_jr4ad")
+skeleton = NodePath("../..")
+
+[node name="LOSolver_PreA" type="Node3D" parent="LOScriptReplayerGroup_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 0
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_slerp/LOSolver_PreA" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_A" type="Node3D" parent="LOScriptReplayerGroup_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 1
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_slerp/LOSolver_A" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_B" type="Node3D" parent="LOScriptReplayerGroup_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 2
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_slerp/LOSolver_B" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_PostB" type="Node3D" parent="LOScriptReplayerGroup_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 3
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_slerp/LOSolver_PostB" instance=ExtResource("6_tilwc")]
+
+[node name="DebugTraces_LOScript_cubic_slerp" type="MeshInstance3D" parent="."]
+skeleton = NodePath("")
+script = ExtResource("3_q672x")
+pointMaterial = SubResource("StandardMaterial3D_cui2m")
+tipHistoryLength = 120
+debugIndicatorPath = "../LOScriptReplayerGroup_cubic_slerp/LOSolver_Interpolated/DebugIndicator"
+
+[node name="DebugLines_LOScript_cubic_slerp" type="MeshInstance3D" parent="."]
+skeleton = NodePath("")
+script = ExtResource("6_nec70")
+lineMaterial = SubResource("StandardMaterial3D_1uw0r")
+debugIndicatorPath = "../LOScriptReplayerGroup_cubic_slerp"
+
+[node name="LOScriptReplayerGroup_cubic_slerp" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0)
+
+[node name="LOSolver_Interpolated" type="Node3D" parent="LOScriptReplayerGroup_cubic_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 7
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_Interpolated" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_Interpolated"]
+mesh = SubResource("BoxMesh_4dbh4")
+skeleton = NodePath("../..")
+
+[node name="LOSolver_PreA" type="Node3D" parent="LOScriptReplayerGroup_cubic_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 0
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_PreA" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_A" type="Node3D" parent="LOScriptReplayerGroup_cubic_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 1
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_A" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_B" type="Node3D" parent="LOScriptReplayerGroup_cubic_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 2
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_B" instance=ExtResource("6_tilwc")]
+
+[node name="LOSolver_PostB" type="Node3D" parent="LOScriptReplayerGroup_cubic_slerp"]
+script = ExtResource("5_bviin")
+loFilename = "res://ObjectWiggle_Object.LOScript"
+quatInterpolationMethod = 3
+
+[node name="DebugIndicator" parent="LOScriptReplayerGroup_cubic_slerp/LOSolver_PostB" instance=ExtResource("6_tilwc")]
+
+[node name="Label_PlaybackPos" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
