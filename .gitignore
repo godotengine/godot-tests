@@ -1,4 +1,4 @@
+# Godot 4+ specific ignores
 .godot
 .import
-
 tests/blend_export/**/*.import
