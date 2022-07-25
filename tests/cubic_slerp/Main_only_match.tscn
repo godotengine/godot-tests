@@ -70,6 +70,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0.458449, 0.538813, 0.458986, 0.537436), Quaternion(-0.000707107, 0.707107, 0, 0.707107), Quaternion(0.707107, 0, 0, 0.707107), Quaternion(0.5, 0.5, 0.5, 0.5), Quaternion(0.790594, -0.205453, -0.449878, 0.361053), Quaternion(-0.0370055, -0.196145, 0.881975, 0.426939), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0, 0, 0, 1), Quaternion(0.707, 0, 0.707, 0), Quaternion(1, 0, 0, 0), Quaternion(-1, 0, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(1, 0, 0, 0), Quaternion(0, -0.707, 0.707, 0), Quaternion(0.707, 0, 0, 0.707), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("cubic_slerp_preflipped:quaternion")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22.1, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707105, 0.00212132, 0.707105, 0), Quaternion(0.458449, 0.538813, 0.458986, 0.537436), Quaternion(-0.000707107, 0.707107, 0, 0.707107), Quaternion(0.707107, 0, 0, 0.707107), Quaternion(0.5, 0.5, 0.5, 0.5), Quaternion(0.790594, -0.205453, -0.449878, 0.361053), Quaternion(0.037, 0.196, -0.882, -0.427), Quaternion(0, 0, 0, -1), Quaternion(0, 0, 0, -1), Quaternion(0, 0, 0, -1), Quaternion(0, 0, 0, -1), Quaternion(0.707, 0, 0.707, 0), Quaternion(1, 0, 0, 0), Quaternion(1, 0, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(0, 0, -0.707, 0.707), Quaternion(0.509045, 0.505648, -0.49089, 0.494187), Quaternion(0.707, 0, 0.707, 0), Quaternion(0, 1, 0, 0), Quaternion(0, 0, 0, 1), Quaternion(1, 0, 0, 0), Quaternion(0, -0.707, 0.707, 0), Quaternion(0.707, 0, 0, 0.707), Quaternion(0, 1, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_igpm5"]
 _data = {
@@ -146,7 +158,7 @@ tipHistoryLength = 120
 debugIndicatorPath = "../slerp/DebugIndicator"
 
 [node name="slerp" type="Node3D" parent="."]
-transform = Transform3D(0.50142, 0, 0.865203, 0, -0.999999, 0, 0.865204, 0, -0.501419, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, 0)
 rotation_edit_mode = 1
 visible = false
 
@@ -163,7 +175,7 @@ tipHistoryLength = 120
 debugIndicatorPath = "../cubic_slerp/DebugIndicator"
 
 [node name="cubic_slerp" type="Node3D" parent="."]
-transform = Transform3D(0.410949, 0.0794689, 0.908187, -0.0794688, -0.989279, 0.122524, 0.908187, -0.122524, -0.400228, 0, 0, 0)
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 rotation_edit_mode = 1
 
 [node name="DebugIndicator" parent="cubic_slerp" instance=ExtResource("1_fe687")]
@@ -171,8 +183,24 @@ rotation_edit_mode = 1
 [node name="Box" type="MeshInstance3D" parent="cubic_slerp"]
 mesh = SubResource("BoxMesh_4dbh4")
 
+[node name="DebugTraces_cubic_slerp_preflipped" type="MeshInstance3D" parent="."]
+skeleton = NodePath("../slerp")
+script = ExtResource("3_q672x")
+pointMaterial = SubResource("StandardMaterial3D_r0uvn")
+tipHistoryLength = 120
+debugIndicatorPath = "../cubic_slerp_preflipped/DebugIndicator"
+
+[node name="cubic_slerp_preflipped" type="Node3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+rotation_edit_mode = 1
+
+[node name="DebugIndicator" parent="cubic_slerp_preflipped" instance=ExtResource("1_fe687")]
+
+[node name="Box" type="MeshInstance3D" parent="cubic_slerp_preflipped"]
+mesh = SubResource("BoxMesh_4dbh4")
+
 [node name="lastKey" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 0, 0, 0, -1, 0, 2.1, 0)
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 2.1, 0)
 rotation_edit_mode = 1
 
 [node name="DebugIndicator" parent="lastKey" instance=ExtResource("1_fe687")]
