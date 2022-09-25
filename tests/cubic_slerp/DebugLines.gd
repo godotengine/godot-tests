@@ -5,12 +5,12 @@ extends MeshInstance3D
 
 var immediate:ImmediateMesh
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	immediate = ImmediateMesh.new()
 	mesh = immediate
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	immediate.clear_surfaces()
 
@@ -39,7 +39,6 @@ func _process(_delta):
 	if not postBTipX:
 		return
 	immediate.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, lineMaterial)
-#	immediate.surface_set_color(Color(0, 0, 0))
 	immediate.surface_add_vertex(preATipX.global_transform.origin)
 	immediate.surface_add_vertex(aTipX.global_transform.origin)
 	immediate.surface_add_vertex(bTipX.global_transform.origin)
@@ -47,7 +46,6 @@ func _process(_delta):
 	immediate.surface_end()
 
 	immediate.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, lineMaterial)
-#	immediate.surface_set_color(Color(0, 0, 0))
 	immediate.surface_add_vertex(preATipY.global_transform.origin)
 	immediate.surface_add_vertex(aTipY.global_transform.origin)
 	immediate.surface_add_vertex(bTipY.global_transform.origin)
@@ -55,7 +53,6 @@ func _process(_delta):
 	immediate.surface_end()
 
 	immediate.surface_begin(Mesh.PRIMITIVE_LINE_STRIP, lineMaterial)
-#	immediate.surface_set_color(Color(0, 0, 0))
 	immediate.surface_add_vertex(preATipZ.global_transform.origin)
 	immediate.surface_add_vertex(aTipZ.global_transform.origin)
 	immediate.surface_add_vertex(bTipZ.global_transform.origin)
