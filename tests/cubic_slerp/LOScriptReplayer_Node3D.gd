@@ -35,9 +35,8 @@ func loadFile(fileName):
 	loData.clear()
 	loDataKeys = []
 
-	var file = File.new()
-	#var metadata = {}
-	if file.open(fileName, File.READ) != OK:
+	var file : FileAccess = FileAccess.open(fileName, FileAccess.READ)
+	if file == null:
 		print("Can't open file " + fileName)
 		return
 	var line
@@ -201,7 +200,7 @@ func _process(_delta):
 #					quat = quat_a.cubic_interpolate(quat_b, quat_pre_a, quat_post_b, fraction)
 
 					# "Traditional" version:
-					quat = quat_a.cubic_slerp(quat_b, quat_pre_a, quat_post_b, fraction)
+					quat = quat_a.spherical_cubic_interpolate(quat_b, quat_pre_a, quat_post_b, fraction)
 				_:
 					quat = quat_a
 	
