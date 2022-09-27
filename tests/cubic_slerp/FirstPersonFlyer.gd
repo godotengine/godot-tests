@@ -9,7 +9,6 @@ var camera_angle_x_filtered:float = 0
 # This makes turning less responsive, but maybe easier to follow
 # when creating videos etc.
 const camera_angle_filter_coeff:float = 0.1
-#const camera_angle_filter_coeff:float = 0.001	#0.01
 
 enum NavigationMode {
 	NAVMODE_FPS,
@@ -58,8 +57,6 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-#	var head:Node3D = get_node("Head")
-
 	# Due to physics-process being run only 60 Hz and refresh rate
 	# may differ from that, head is moved "in advance" before
 	# the other parts.
@@ -69,17 +66,8 @@ func _physics_process(delta):
 	headDetachment = Vector3()	# Start accumulating from zero again
 	var _discard = move_and_slide()
 
-# Tried to prevent strange jitter with this. Didn't help
-var lastUptime_us:int = -1
 		
 func _process(delta):
-# Tried to prevent strange jitter with this. Didn't help
-#	var upTime_us = Time.get_ticks_usec()
-#	var deltaOverride = float(upTime_us - lastUptime_us) / 1e6
-#	if (deltaOverride < 0.1):
-#		delta = deltaOverride
-#	lastUptime_us = upTime_us
-
 	var manipulator = get_node("ManipulatorCollisionShape")
 	var capsule = get_node("Capsule")
 	var manipulatorMeshes = get_node("ManipulatorMeshes")
@@ -113,7 +101,6 @@ func _process(delta):
 		direction = Vector3()
 		velocity = Vector3()
 		velocity = Vector3()
-#		accumulatedVelocity = Vector3()
 		camera_change = Vector2()
 
 		return
@@ -170,7 +157,6 @@ func fly(delta):
 	
 	var correctedCoeff = pow(1 - flyAcceleration, delta)
 	velocity = correctedCoeff * velocity + target * (1 - correctedCoeff)
-#	print(velocity)
 		
 	var translation = velocity  * delta
 	headDetachment += translation
@@ -271,8 +257,6 @@ func aim6DOF(delta):
 	transform.basis = tempBasis.orthonormalized()
 
 func set_LocationOrientation(newTransform: Transform3D):
-	# TODO: should relay this to _physics_process instead
-	# TODO: 6DOF?
 	transform = newTransform
 	transform.basis = Basis()
 	var newBasis = newTransform.basis
@@ -282,6 +266,5 @@ func set_LocationOrientation(newTransform: Transform3D):
 	camera_angle_y_filtered = camera_angle_y_unfiltered
 	rotate_x(deg_to_rad(camera_angle_x_filtered))
 	rotate_y(deg_to_rad(camera_angle_y_filtered))
-#	firstPerson.camera_change = Vector2(0,0)
 
 	

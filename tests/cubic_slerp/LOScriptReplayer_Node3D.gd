@@ -64,36 +64,26 @@ func loadFile(fileName):
 		if (subStrings.size() >= (1 + (4 * 3))):
 			var replayTime = subStrings[0].to_int() - readTimeShift
 			
-			#Coordinates in Godot's native "EUS"-convention:
+			# Coordinates in Godot's native "EUS"-convention:
 			var origin = Vector3(0,0, 0)
-#			var origin = Vector3(subStrings[1].to_float(), subStrings[2].to_float(), subStrings[3].to_float())
+
 			var unitVecX = Vector3(subStrings[4].to_float(), subStrings[5].to_float(), subStrings[6].to_float())
 			var unitVecY = Vector3(subStrings[7].to_float(), subStrings[8].to_float(), subStrings[9].to_float())
 			var unitVecZ = Vector3(subStrings[10].to_float(), subStrings[11].to_float(), subStrings[12].to_float())
 
-# These convert NED-coordinates to godot's "EUS" on the fly
-#			var origin = Vector3(subStrings[2].to_float(), -subStrings[3].to_float(), -subStrings[1].to_float())
-#			var unitVecX = Vector3(subStrings[5].to_float(), -subStrings[6].to_float(), -subStrings[4].to_float())
-#			var unitVecY = Vector3(subStrings[8].to_float(), -subStrings[9].to_float(), -subStrings[7].to_float())
-#			var unitVecZ = Vector3(subStrings[11].to_float(), -subStrings[12].to_float(), -subStrings[10].to_float())
-
 			var basisTemp = Basis(unitVecX, unitVecY, unitVecZ).orthonormalized()
-#			var tr = Transform(unitVecX, unitVecY, unitVecZ, origin)
-#			print(basisTemp)
+
 			var quat = Quaternion(basisTemp)
 			
 			loData[replayTime] = LOItem.new(origin, quat)
 		for _i in range(readLineSkip):
-			# To get sparser data for quaternion interpolation tests
+			# To get sparser data for quaternion interpolation tests.
 			file.get_line()
 
 	loDataKeys = loData.keys()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-#	pass
-
-#func _physics_process(delta):
 	if loData.is_empty():
 		return
 	
@@ -194,29 +184,15 @@ func _process(_delta):
 					# Causes some strange jitter
 					quat = quat_a.slerpni(quat_b, fraction)
 				QUAT_INTERPOLATION_METHOD.cubic_slerp:
-					# If you want to test the interpolation method in PR
-					# https://github.com/godotengine/godot/pull/63287
-					# use cubic_interpolate-version below:
-#					quat = quat_a.cubic_interpolate(quat_b, quat_pre_a, quat_post_b, fraction)
-
-					# "Traditional" version:
 					quat = quat_a.spherical_cubic_interpolate(quat_b, quat_pre_a, quat_post_b, fraction)
 				_:
 					quat = quat_a
 	
 	var basisTemp:Basis = Basis(quat)
-	
-#	print("Original basis: ", basis)
 
-#	print("Original basis inverse: ", basis.inverse())
-	
-# Why is .transposed() needed for basis here? 
-# In Godot 3.x (from where this code was copied from) it was not needed.
 # Addition: Dug a bit deeper with this. It seems that this may be related
 # to a change how Godot stores Basis (transposed or not). Some info:
 # https://github.com/godotengine/godot-proposals/issues/2738
 # Quick test: When printing identically rotated Basis in 3.x and 4.0 dev they
 # really seem to output differently ordered values.
-# Can live with this, so...
-
 	transform = Transform3D(basisTemp.transposed(), origin)

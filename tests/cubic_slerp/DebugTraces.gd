@@ -11,12 +11,12 @@ var tipXHistory = []
 var tipYHistory = []
 var tipZHistory = []
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	immediate = ImmediateMesh.new()
 	mesh = immediate
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	var interpolatedTipX = get_node(debugIndicatorPath + "/XAxis/TipEnd")
 	var interpolatedTipY = get_node(debugIndicatorPath + "/YAxis/TipEnd")
