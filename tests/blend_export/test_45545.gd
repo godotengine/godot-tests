@@ -42,10 +42,10 @@ var test_animation_player: AnimationPlayer
 
 func _ready():
 	output = $ScrollContainer/OutputWindow
-	test_scene = GOLDEN_GLTF_SCENE.instance()
+	test_scene = GOLDEN_GLTF_SCENE.instantiate()
 	test_animation_player = test_scene.get_node_or_null("AnimationPlayer")
 	if not test_animation_player:
-		_add_line("ERROR: imported glTF scene has no AnimationPlayer node!", Color.orangered)
+		_add_line("ERROR: imported glTF scene has no AnimationPlayer node!", Color.ORANGE_RED)
 		print("FAIL: imported glTF scene has no AnimationPlayer so no tests will be run.")
 		return
 
@@ -84,15 +84,15 @@ func _find_tests() -> Array:
 
 
 func _add_test_header(method_name: String) -> void:
-	_add_line(method_name, Color.royalblue)
+	_add_line(method_name, Color.ROYAL_BLUE)
 
 
 func _add_result(succeeded: bool, message: String) -> void:
 	var prefix: String = "  [OK] " if succeeded else "  [FAIL] "
-	_add_line(prefix + message, Color.forestgreen if succeeded else Color.orangered)
+	_add_line(prefix + message, Color.FOREST_GREEN if succeeded else Color.ORANGE_RED)
 
 
-func _add_line(text: String, font_color: Color = Color.black) -> void:
+func _add_line(text: String, font_color: Color = Color.BLACK) -> void:
 	var line: Label = Label.new()
 	line.text = text
 	line.add_theme_font_size_override("font_size", 22)
@@ -279,12 +279,25 @@ func _check_animated(original: String, expected: String, expected_animation: Str
 
 	# All of the golden test animations are transforms.
 	var track_type: int = animation.track_get_type(0)
-	if track_type != Animation.TYPE_TRANSFORM:
+	if track_type != Animation.TYPE_ROTATION_3D:
 		_add_result(
 			false,
 			"Unexpected track type %d on animation '%s' for Godot node '%s' (glTF '%s')" % [
 				track_type, expected_animation, expected, original])
 		return false
+	elif track_type != Animation.TYPE_POSITION_3D:
+		_add_result(
+			false,
+			"Unexpected track type %d on animation '%s' for Godot node '%s' (glTF '%s')" % [
+				track_type, expected_animation, expected, original])
+		return false
+	elif track_type != Animation.TYPE_SCALE_3D:
+		_add_result(
+			false,
+			"Unexpected track type %d on animation '%s' for Godot node '%s' (glTF '%s')" % [
+				track_type, expected_animation, expected, original])
+		return false
+	
 
 	var track_key_count: int = animation.track_get_key_count(0)
 	if track_key_count <= 0:
