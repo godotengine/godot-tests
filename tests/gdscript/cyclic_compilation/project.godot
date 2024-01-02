@@ -12,5 +12,5 @@ config_version=5
 
 config/name="ParseError_Project"
 run/main_scene="res://main_scene.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

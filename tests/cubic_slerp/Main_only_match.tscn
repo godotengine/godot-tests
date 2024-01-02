@@ -17,15 +17,12 @@ sky_material = SubResource("ProceduralSkyMaterial_eko38")
 
 [sub_resource type="Environment" id="Environment_5bc8l"]
 background_mode = 2
-background_energy = 0.5
 sky = SubResource("Sky_00uh5")
 tonemap_mode = 2
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_cascades = 1
 sdfgi_min_cell_size = 31.25
-sdfgi_cascade0_distance = 2000.0
-sdfgi_max_distance = 4000.0
 sdfgi_y_scale = 2
 glow_enabled = true
 

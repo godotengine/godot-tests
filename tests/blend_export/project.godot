@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Hint Game Project"
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.png"
+
+[filesystem]
+
+import/fbx/enabled=false
 
 [rendering]
 

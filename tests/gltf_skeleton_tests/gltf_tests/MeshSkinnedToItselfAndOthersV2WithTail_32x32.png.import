@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckmlr2jsohlh1"
-path.s3tc="res://.godot/imported/GreenCheckerboard.png-d0c9342e56f02658d0ef8f3f4aa435d6.s3tc.ctex"
+uid="uid://bj5sofpodimwf"
+path.s3tc="res://.godot/imported/MeshSkinnedToItselfAndOthersV2WithTail_32x32.png-1e543e192549bde40858c9ab20a72ae2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://GreenCheckerboard.png"
-dest_files=["res://.godot/imported/GreenCheckerboard.png-d0c9342e56f02658d0ef8f3f4aa435d6.s3tc.ctex"]
+source_file="res://gltf_tests/MeshSkinnedToItselfAndOthersV2WithTail_32x32.png"
+dest_files=["res://.godot/imported/MeshSkinnedToItselfAndOthersV2WithTail_32x32.png-1e543e192549bde40858c9ab20a72ae2.s3tc.ctex"]
 
 [params]
 
