@@ -1,74 +1,218 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://b3b5futy0qsol"]
 
-[ext_resource path="res://gltf_tests/modified_bone_animation_test.glb" type="PackedScene" id=1]
-[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2Animated.glb" type="PackedScene" id=2]
-[ext_resource path="res://gltf_tests/duplicate_skinned_mesh_combined.glb" type="PackedScene" id=3]
-[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2.glb" type="PackedScene" id=4]
-[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV1x.glb" type="PackedScene" id=5]
-[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthers.glb" type="PackedScene" id=6]
-[ext_resource path="res://gltf_tests/MeshSkinnedToItself.glb" type="PackedScene" id=7]
-[ext_resource path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2WithTail.glb" type="PackedScene" id=8]
-[ext_resource path="res://gltf_tests/NestedSkeletonReproV3.glb" type="PackedScene" id=9]
-[ext_resource path="res://gltf_tests/NestedSkeletonReproCaseV2WithBody.glb" type="PackedScene" id=10]
-[ext_resource path="res://gltf_tests/NestedSkeletonReproCase_renamemesh.glb" type="PackedScene" id=11]
-[ext_resource path="res://gltf_tests/DirectParentedSkeletons.glb" type="PackedScene" id=12]
+[ext_resource type="PackedScene" uid="uid://cve3ee5hdutu8" path="res://gltf_tests/modified_bone_animation_test.glb" id="1"]
+[ext_resource type="PackedScene" uid="uid://cka4qceh300pb" path="res://gltf_tests/NestedSkeletonReproCaseV2Animated.glb" id="2"]
+[ext_resource type="PackedScene" uid="uid://bd54q20rhhw60" path="res://gltf_tests/duplicate_skinned_mesh_combined.glb" id="3"]
+[ext_resource type="PackedScene" uid="uid://kk28nkdfv1yg" path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2.glb" id="4"]
+[ext_resource type="PackedScene" uid="uid://d0404a2mn4wik" path="res://gltf_tests/MeshSkinnedToItselfAndOthersV1x.glb" id="5"]
+[ext_resource type="PackedScene" uid="uid://dmeag3j0gpnly" path="res://gltf_tests/MeshSkinnedToItselfAndOthers.glb" id="6"]
+[ext_resource type="PackedScene" uid="uid://dy3y3t81knkqb" path="res://gltf_tests/MeshSkinnedToItself.glb" id="7"]
+[ext_resource type="PackedScene" uid="uid://cclbgr58klrt8" path="res://gltf_tests/MeshSkinnedToItselfAndOthersV2WithTail.glb" id="8"]
+[ext_resource type="PackedScene" uid="uid://rv7ro10w2jl4" path="res://gltf_tests/NestedSkeletonReproV3.glb" id="9"]
+[ext_resource type="PackedScene" uid="uid://ccdn5dqjfrgsw" path="res://gltf_tests/NestedSkeletonReproCaseV2WithBody.glb" id="10"]
+[ext_resource type="PackedScene" uid="uid://ccecsuatvflqi" path="res://gltf_tests/NestedSkeletonReproCase_renamemesh.glb" id="11"]
+[ext_resource type="PackedScene" uid="uid://duoiepw26xxf" path="res://gltf_tests/DirectParentedSkeletons.glb" id="12"]
+
+[sub_resource type="Animation" id="Animation_obsub"]
+resource_name = "ArmatureAnimation"
+length = 10.4167
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:FirstBone")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0666667, 1, 0, 0, 0.0736, 0.133333, 1, 0, 0, 0.2432, 0.2, 1, 0, 0, 0.4704, 0.266667, 1, 0, 0, 0.7024, 0.333333, 1, 0, 0, 0.896, 0.4, 1, 0, 0, 0.9888, 0.466667, 1, 0, 0, 1, 10.4167, 1, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:EndBone")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0666667, 1, 0.0736, 0, -0.0736, 0.133333, 1, 0.2432, 0, -0.2432, 0.2, 1, 0.4704, 0, -0.4704, 0.266667, 1, 0.7024, 0, -0.7024, 0.333333, 1, 0.896, 0, -0.896, 0.4, 1, 0.9888, 0, -0.9888, 0.466667, 1, 1, 0, -1, 10.4167, 1, 1, 0, -1)
+tracks/2/type = "position_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:VerticalBone")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0666667, 1, 0, 0.0736, -0.0736, 0.133333, 1, 0, 0.2432, -0.2432, 0.2, 1, 0, 0.4704, -0.4704, 0.266667, 1, 0, 0.7024, -0.7024, 0.333333, 1, 0, 0.896, -0.896, 0.4, 1, 0, 0.9888, -0.9888, 0.466667, 1, 0, 1, -1, 10.4167, 1, 0, 1, -1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c0b0f"]
+_data = {
+"ArmatureAnimation": SubResource("Animation_obsub")
+}
 
 [sub_resource type="AnimationNodeAnimation" id="modified_bone_animation_test"]
 animation = &"ArmatureAnimation"
 
 [node name="Node3D" type="Node3D"]
-script = null
 
-[node name="MeshSkinnedToItselfAndOthersV2WithTail" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
+[node name="MeshSkinnedToItselfAndOthersV2WithTail" parent="." instance=ExtResource("8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
-[node name="modified_bone_animation_test" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+[node name="LeftFarCube" parent="MeshSkinnedToItselfAndOthersV2WithTail/OuterNode/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 0, -0.047)
+
+[node name="modified_bone_animation_test" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Skeleton3D" parent="modified_bone_animation_test/Armature" index="0"]
+bones/0/position = Vector3(0, 0, 1)
+bones/1/position = Vector3(1, 0, -1)
+bones/2/position = Vector3(0, 1, -1)
 
 [node name="AnimationTree" type="AnimationTree" parent="modified_bone_animation_test"]
-tree_root = SubResource( "modified_bone_animation_test" )
+libraries = {
+"": SubResource("AnimationLibrary_c0b0f")
+}
+tree_root = SubResource("modified_bone_animation_test")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 
-[node name="NestedSkeletonReproCaseV2Animated" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
+[node name="NestedSkeletonReproCaseV2Animated" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
-[node name="MeshSkinnedToItselfAndOthersV2" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="BoneAttachment3D" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00018369, 1.13212, 0.00623776)
+bone_idx = 6
 
-[node name="MeshSkinnedToItselfAndOthers" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
+[node name="Mesh_HornLeft" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169816, 1.33212, 0.0252378)
 
-[node name="MeshSkinnedToItselfAndOthersV1x" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0 )
+[node name="Mesh_HornRight" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176163, 1.32812, -0.0577622)
 
-[node name="duplicate_skinned_mesh_combined" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0, 0.1, 0, -0.1, 0, 0, 0, 0, 0.1, -2, 2, 0 )
+[node name="Mesh_Collar" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00130972, 0.0481955, -0.0820545)
 
-[node name="NestedSkeletonReproV3" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0 )
+[node name="Mesh_wing_R" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="4"]
+transform = Transform3D(0.00819152, 0, -0.22943, 0, 0.1, 0, 0.00573576, 0, 0.327661, -0.151816, 1.052, 0.190313)
 
-[node name="MeshSkinnedToItself" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+[node name="Mesh_wing_L" parent="NestedSkeletonReproCaseV2Animated/Skeleton3D" index="5"]
+transform = Transform3D(0.00819152, 0, 0.22943, 0, 0.1, 0, -0.00573576, 0, 0.327661, 0.195184, 1.05164, 0.215313)
 
-[node name="NestedSkeletonReproCaseV2WithBody" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0 )
+[node name="MeshSkinnedToItselfAndOthersV2" parent="." instance=ExtResource("4")]
 
-[node name="NestedSkeletonReproCase_renamemesh" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0 )
+[node name="LeftFarCube" parent="MeshSkinnedToItselfAndOthersV2/OuterNode/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0999999, 0, -0.047)
 
-[node name="DirectParentedSkeletons" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+[node name="MeshSkinnedToItselfAndOthers" parent="." instance=ExtResource("6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="MeshSkinnedToItselfAndOthersV1x" parent="." instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="duplicate_skinned_mesh_combined" parent="." instance=ExtResource("3")]
+transform = Transform3D(0, 0.1, 0, -0.1, 0, 0, 0, 0, 0.1, -2, 2, 0)
+
+[node name="NestedSkeletonReproV3" parent="." instance=ExtResource("9")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+
+[node name="BoneAttachment3D" parent="NestedSkeletonReproV3/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00018369, 1.13212, 0.00623776)
+bone_idx = 6
+
+[node name="Mesh_HornLeft" parent="NestedSkeletonReproV3/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169816, 1.33212, 0.0252378)
+
+[node name="Mesh_HornRight" parent="NestedSkeletonReproV3/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176163, 1.32812, -0.0577622)
+
+[node name="Mesh_Collar" parent="NestedSkeletonReproV3/Skeleton3D" index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00130972, 0.0481955, -0.0820545)
+
+[node name="Mesh_wing_R" parent="NestedSkeletonReproV3/Skeleton3D" index="4"]
+transform = Transform3D(0.00819152, 0, -0.22943, 0, 0.1, 0, 0.00573576, 0, 0.327661, -0.151816, 1.052, 0.190313)
+
+[node name="Mesh_wing_L" parent="NestedSkeletonReproV3/Skeleton3D" index="5"]
+transform = Transform3D(0.00819152, 0, 0.22943, 0, 0.1, 0, -0.00573576, 0, 0.327661, 0.195184, 1.05164, 0.215313)
+
+[node name="MeshSkinnedToItself" parent="." instance=ExtResource("7")]
+
+[node name="NestedSkeletonReproCaseV2WithBody" parent="." instance=ExtResource("10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="BoneAttachment3D" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00018369, 1.13212, 0.00623776)
+bone_idx = 6
+
+[node name="Mesh_HornLeft" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169816, 1.33212, 0.0252378)
+
+[node name="Mesh_HornRight" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176163, 1.32812, -0.0577622)
+
+[node name="Mesh_Collar" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00130972, 0.0481955, -0.0820545)
+
+[node name="Mesh_wing_R" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="4"]
+transform = Transform3D(0.00819152, 0, -0.22943, 0, 0.1, 0, 0.00573576, 0, 0.327661, -0.151816, 1.052, 0.190313)
+
+[node name="Mesh_wing_L" parent="NestedSkeletonReproCaseV2WithBody/Skeleton3D" index="5"]
+transform = Transform3D(0.00819152, 0, 0.22943, 0, 0.1, 0, -0.00573576, 0, 0.327661, 0.195184, 1.05164, 0.215313)
+
+[node name="NestedSkeletonReproCase_renamemesh" parent="." instance=ExtResource("11")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+
+[node name="BoneAttachment3D" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00018369, 1.13212, 0.00623776)
+bone_idx = 6
+
+[node name="Mesh_HornLeft" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.169816, 1.33212, 0.0252378)
+
+[node name="Mesh_HornRight" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.176163, 1.32812, -0.0577622)
+
+[node name="Mesh_chorker" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00130972, 0.0481955, -0.0820545)
+
+[node name="Mesh_wing_R" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="4"]
+transform = Transform3D(0.00819152, 0, -0.22943, 0, 0.1, 0, 0.00573576, 0, 0.327661, -0.151816, 1.052, 0.190313)
+
+[node name="Mesh_wing_L" parent="NestedSkeletonReproCase_renamemesh/Skeleton3D" index="5"]
+transform = Transform3D(0.00819152, 0, 0.22943, 0, 0.1, 0, -0.00573576, 0, 0.327661, 0.195184, 1.05164, 0.215313)
+
+[node name="DirectParentedSkeletons" parent="." instance=ExtResource("12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Mesh_HairL" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0577, 0.514695, 0.0159007)
+
+[node name="Mesh_HairR" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0584, 0.518295, 0.0231007)
+
+[node name="BoneAttachment3D" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76895e-08, 0.360495, 0.0213007)
+bone_idx = 5
+
+[node name="Mesh_HornL" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17, 0.560495, 0.0403007)
+
+[node name="Mesh_HornR" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.175979, 0.556495, -0.0426993)
+
+[node name="Mesh_Collar" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00112599, -0.797297, 0.0120857)
+
+[node name="Mesh_RightWing" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0311837, 0.280377, 0.0520629)
+
+[node name="Mesh_LeftWing" parent="DirectParentedSkeletons/Root/Hips/Spine/Skeleton3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0.28002, 0.000847877)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.877583, -0.229849, 0.420735, 0, 0.877583, 0.479426, -0.479426, -0.420736, 0.770151, 1.68294, 1.9177, 3.0806)
 
 [editable path="MeshSkinnedToItselfAndOthersV2WithTail"]
 [editable path="modified_bone_animation_test"]
 [editable path="NestedSkeletonReproCaseV2Animated"]
 [editable path="MeshSkinnedToItselfAndOthersV2"]
+[editable path="MeshSkinnedToItselfAndOthers"]
 [editable path="MeshSkinnedToItselfAndOthersV1x"]
 [editable path="duplicate_skinned_mesh_combined"]
-[editable path="MeshSkinnedToItselfAndOthers"]
+[editable path="NestedSkeletonReproV3"]
 [editable path="MeshSkinnedToItself"]
 [editable path="NestedSkeletonReproCaseV2WithBody"]
 [editable path="NestedSkeletonReproCase_renamemesh"]
-[editable path="NestedSkeletonReproV3"]
 [editable path="DirectParentedSkeletons"]

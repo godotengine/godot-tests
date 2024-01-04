@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://do0yfibxleg14"]
+[gd_scene load_steps=7 format=3 uid="uid://do0yfibxleg14"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4eswk"]
 albedo_color = Color(0, 1, 0, 1)
@@ -12,6 +12,7 @@ albedo_color = Color(0, 0, 1, 1)
 [sub_resource type="Animation" id="Animation_l45ir"]
 resource_name = "New Anim"
 length = 3.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -76,10 +77,16 @@ tracks/2/keys = {
 "values": [Quaternion(0, 0, 0, 1)]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17c1p"]
+_data = {
+"New Anim": SubResource("Animation_l45ir"),
+"RESET": SubResource("Animation_7v8ca")
+}
+
 [node name="Node3D" type="Node3D"]
 
 [node name="gizmo" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, -2.53518e-06, 0, 2.53518e-06, -1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 rotation_edit_mode = 1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="gizmo"]
@@ -88,17 +95,17 @@ size = Vector3(0.2, 0.2, 0.2)
 [node name="CSGBox3D2" type="CSGBox3D" parent="gizmo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 size = Vector3(0.05, 1, 0.05)
-material = SubResource( "StandardMaterial3D_4eswk" )
+material = SubResource("StandardMaterial3D_4eswk")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="gizmo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 size = Vector3(1, 0.05, 0.05)
-material = SubResource( "StandardMaterial3D_ffia4" )
+material = SubResource("StandardMaterial3D_ffia4")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="gizmo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 size = Vector3(0.05, 0.05, 1)
-material = SubResource( "StandardMaterial3D_dhgvt" )
+material = SubResource("StandardMaterial3D_dhgvt")
 
 [node name="gizmo2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
@@ -110,18 +117,20 @@ size = Vector3(0.2, 0.2, 0.2)
 [node name="CSGBox3D2" type="CSGBox3D" parent="gizmo2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 size = Vector3(0.05, 1, 0.05)
-material = SubResource( "StandardMaterial3D_4eswk" )
+material = SubResource("StandardMaterial3D_4eswk")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="gizmo2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 size = Vector3(1, 0.05, 0.05)
-material = SubResource( "StandardMaterial3D_ffia4" )
+material = SubResource("StandardMaterial3D_ffia4")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="gizmo2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 size = Vector3(0.05, 0.05, 1)
-material = SubResource( "StandardMaterial3D_dhgvt" )
+material = SubResource("StandardMaterial3D_dhgvt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/New Anim" = SubResource( "Animation_l45ir" )
-anims/RESET = SubResource( "Animation_7v8ca" )
+libraries = {
+"": SubResource("AnimationLibrary_17c1p")
+}
+autoplay = "New Anim"
